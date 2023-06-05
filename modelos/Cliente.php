@@ -1,5 +1,5 @@
 <?php
-require_once 'Conexion.php';
+require 'Conexion.php';
 
 class Cliente extends Conexion{
     public $cliente_id;
@@ -17,10 +17,25 @@ class Cliente extends Conexion{
     }
 
     public function guardar(){
-        $sql = "INSERT INTO clientes(cliente_nombre, cliente_nit) values('$this->cliente_nombre','$this->cliente_nit')";
+        // Validar el NIT antes de guardar los datos
+        if (!$this->validarNit($this->cliente_nit)) {
+            echo "El NIT ingresado es inválido. No se guardarán los datos.";
+            // Detener la ejecución del código o redirigir a otra página, según sea necesario
+            exit();
+        }
+    
+        $sql = "INSERT INTO clientes (cliente_nombre, cliente_nit) VALUES ('$this->cliente_nombre','$this->cliente_nit')";
         $resultado = self::ejecutar($sql);
+    
+        if ($resultado) {
+            echo "Datos guardados correctamente. El NIT es válido.";
+        } else {
+            echo "Error al guardar los datos.";
+        }
+        
         return $resultado;
     }
+    
 
     public function buscar(){
         $sql = "SELECT * from clientes where cliente_situacion = 1 ";
@@ -42,16 +57,25 @@ class Cliente extends Conexion{
     }
 
     public function modificar(){
-        $sql = "UPDATE clientes SET cliente_nombre = '$this->cliente_nombre', cliente_nit = $this->cliente_nit where cliente_id = $this->cliente_id";
+        $sql = "UPDATE clientes  SET cliente_nombre = '$this->cliente_nombre', cliente_nit = $this->cliente_nit where cliente_id = $this->cliente_id";
         
         $resultado = self::ejecutar($sql);
         return $resultado;
     }
 
     public function eliminar(){
-        $sql = "UPDATE clientes SET cliente_situacion = 0 where cliente_id = $this->cliente_id";
+        $sql = "UPDATE clientes  SET cliente_situacion = 0 where cliente_id = $this->cliente_id";
         
         $resultado = self::ejecutar($sql);
         return $resultado;
     }
+
+    include_once '../../includes/funciones.php';
+    if(validarNIT($_GET['nit'])){
+        echo "si es valido";
+    }else{
+        
+        echo "no es valido";
+    }
 }
+    

@@ -15,10 +15,23 @@
                     </a>
                     <ul class="dropdown-menu bg-dark">
                         <li class="nav-item">
-                            <a class="nav-link" href="/pracitca9/vistas/ventas/index.php">Ingresar venta</a>
+                            <a class="nav-link" href="/practica9/vistas/ventas/index.php">Ingresar venta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pracitca9/vistas/ventas/buscar.php">Buscar venta</a>
+                            <a class="nav-link" href="/practica9/vistas/ventas/buscar.php">Buscar venta</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Clientes
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/practica9/vistas/clientes/index.php">Crear Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/practica9/vistas/clientes/buscar.php">Buscar Cliente</a>
                         </li>
                     </ul>
                 </li>
@@ -28,10 +41,10 @@
                     </a>
                     <ul class="dropdown-menu bg-dark">
                         <li class="nav-item">
-                            <a class="nav-link" href="/pracitca9/vistas/productos/index.php">Crear producto</a>
+                            <a class="nav-link" href="/practica9/vistas/productos/index.php">Crear producto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pracitca9/vistas/productos/buscar.php">Buscar producto</a>
+                            <a class="nav-link" href="/practica9/vistas/productos/buscar.php">Buscar producto</a>
                         </li>
                     </ul>
                 </li>
