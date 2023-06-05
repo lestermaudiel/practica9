@@ -1,30 +1,22 @@
 <?php
-require '../../modelos/Producto.php';
-
-
-if($_POST['producto_nombre'] != '' && $_POST['producto_precio']  != '' && $_POST['producto_id'] != ''){
-
-
-
-    try {
-        $producto = new Producto($_POST);
-        $resultado = $producto->modificar();
-
-    } catch (PDOException $e) {
-        $error = $e->getMessage();
-    } catch (Exception $e2){
-        $error = $e2->getMessage();
-    }
-}else{
-    $error = "Debe llenar todos los datos";
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+require_once '../../modelos/Venta.php';
+try {
+    $_GET['venta_fecha'] = $_GET['venta_fecha'] != '' ? date('d-m-Y', strtotime($_GET['venta_fecha'])) : '';
+    $venta = new Venta($_GET);
+    
+    $ventas = $venta->buscar();
+    // echo "<pre>";
+    // var_dump($ventas);
+    // echo "</pre>";
+    // $error = "NO se guardó correctamente";
+} catch (PDOException $e) {
+    $error = $e->getMessage();
+} catch (Exception $e2){
+    $error = $e2->getMessage();
 }
-
-
-// if($resultado){
-//     echo "Guardado exitosamente";
-// }else{
-//     echo "Ocurrió un error: $error";
-// }
 
 ?>
 <!DOCTYPE html>
@@ -34,30 +26,45 @@ if($_POST['producto_nombre'] != '' && $_POST['producto_precio']  != '' && $_POST
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Resultados</title>
+    <title>Resultado de ventas</title>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <?php if($resultado): ?>
-                    <div class="alert alert-success" role="alert">
-                        Modificado exitosamente!
-                    </div>
-                <?php else :?>
-                    <div class="alert alert-danger" role="alert">
-                        Ocurrió un error: <?= $error ?>
-                    </div>
-                <?php endif ?>
-              
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>NO. </th>
+                            <th>CLIENTE</th>
+                            <th>FECHA</th>
+                            <th>DETALLE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(count($ventas) > 0):?>
+                        <?php foreach($ventas as $key => $venta) : ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?= $venta['CLIENTE_NOMBRE'] ?></td>
+                            <td><?= $venta['VENTA_FECHA'] ?></td>
+                            <td><a class="btn btn-info w-100" href="/practica9/vistas/ventas/detalle.php?venta_id=<?= $venta['VENTA_ID']?>">VER DETALLE</a></td>
+                        </tr>
+                        <?php endforeach ?>
+                        <?php else :?>
+                            <tr>
+                                <td colspan="4">NO EXISTEN REGISTROS</td>
+                            </tr>
+                        <?php endif?>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-4">
-                <a href="/practica9/controladores/productos/buscar.php?producto_nombre=<?= $_POST['producto_nombre'] ?>" class="btn btn-info">Volver al formulario</a>
+                <a href="/practica9/vistas/ventas/buscar.php" class="btn btn-info w-100">Volver al formulario</a>
             </div>
         </div>
     </div>
 </body>
 </html>
-
