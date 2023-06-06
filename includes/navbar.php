@@ -21,7 +21,7 @@
                             <a class="nav-link" href="/practica9/vistas/ventas/buscar.php">Buscar venta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/practica9/vistas/ventas/detalle.php">Detalle de Venta</a>
+                            <a class="nav-link" href="/practica9/vistas/ventas/detalle_ventas.php">Detalle de Ventas</a>
                         </li>
                     </ul>
                 </li>
