@@ -4,7 +4,7 @@
 // error_reporting(E_ALL);
 require_once '../../modelos/Venta.php';
 try {
-    $_GET['venta_fecha'] = $_GET['venta_fecha'] != '' ? date('d-m-Y', strtotime($_GET['venta_fecha'])) : '';
+    $_GET['venta_fecha'] = $_GET['venta_fecha'] != '' ? date('Y-m-d', strtotime($_GET['venta_fecha'])) : '';
     $venta = new Venta($_GET);
     
     $ventas = $venta->buscar();
@@ -48,7 +48,7 @@ try {
                             <td><?= $key + 1 ?></td>
                             <td><?= $venta['CLIENTE_NOMBRE'] ?></td>
                             <td><?= $venta['VENTA_FECHA'] ?></td>
-                            <td><a class="btn btn-info w-100" href="/practica9/vistas/ventas/detalle.php?venta_id=<?= $venta['VENTA_ID']?>">VER DETALLE</a></td>
+                            <td><a class="btn btn-info w-100" href="/practica9/vistas/ventas/factura.php?venta_id=<?= $venta['VENTA_ID']?>">VER DETALLE</a></td>
                         </tr>
                         <?php endforeach ?>
                         <?php else :?>

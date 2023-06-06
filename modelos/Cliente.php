@@ -55,4 +55,3 @@ class Cliente extends Conexion{
         return $resultado;
     }
 }
-    

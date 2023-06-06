@@ -34,7 +34,7 @@ require_once '../../modelos/Producto.php';
                 <div class="row mb-3">
                     <div class="col">
                         <label for="venta_fecha">Fecha de la venta</label>
-                        <input type="datetime-local" value="<?= date('d-m-Y H:i') ?>" name="venta_fecha" id="venta_fecha" class="form-control">
+                        <input type="datetime-local" value="<?= date('Y-m-d H:i') ?>" name="venta_fecha" id="venta_fecha" class="form-control">
                     </div>
                 </div>
                
